@@ -33,7 +33,6 @@ spec:
           value: "password"
         - name: MB_DB_HOST
           value: "postgres.metabase-lab.svc.cluster.local"
-
 ---
 apiVersion: v1
 kind: Service
@@ -47,5 +46,6 @@ spec:
     - protocol: TCP
       port: 3000
       targetPort: 3000
+      nodePort: 32001  # Define uma porta fixa para o serviço
   type: NodePort
 
