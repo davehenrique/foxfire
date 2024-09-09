@@ -1,0 +1,213 @@
+apiVersion: v1
+items:
+- apiVersion: argoproj.io/v1alpha1
+  kind: Application
+  metadata:
+    creationTimestamp: "2024-09-09T22:25:34Z"
+    generation: 38
+    name: metabase-app
+    namespace: argocd
+    resourceVersion: "15220"
+    uid: c8005219-28a3-4e83-921d-7f8ea718f95b
+  spec:
+    destination:
+      namespace: default
+      server: https://kubernetes.default.svc
+    project: default
+    source:
+      path: metabase
+      repoURL: https://github.com/davehenrique/foxfire.git
+  status:
+    controllerNamespace: argocd
+    health:
+      status: Progressing
+    history:
+    - deployStartedAt: "2024-09-09T22:28:55Z"
+      deployedAt: "2024-09-09T22:28:55Z"
+      id: 0
+      initiatedBy:
+        username: admin
+      revision: d13c9ce3119a3c0d0dee404bc8c7f6911b59a072
+      source:
+        path: metabase
+        repoURL: https://github.com/davehenrique/foxfire.git
+    operationState:
+      finishedAt: "2024-09-09T22:28:55Z"
+      message: successfully synced (all tasks run)
+      operation:
+        initiatedBy:
+          username: admin
+        retry: {}
+        sync:
+          revision: d13c9ce3119a3c0d0dee404bc8c7f6911b59a072
+          syncStrategy:
+            hook: {}
+      phase: Succeeded
+      startedAt: "2024-09-09T22:28:55Z"
+      syncResult:
+        resources:
+        - group: ""
+          hookPhase: Running
+          kind: Service
+          message: service/metabase created
+          name: metabase
+          namespace: metabase-lab
+          status: Synced
+          syncPhase: Sync
+          version: v1
+        - group: apps
+          hookPhase: Running
+          kind: Deployment
+          message: deployment.apps/metabase created
+          name: metabase
+          namespace: metabase-lab
+          status: Synced
+          syncPhase: Sync
+          version: v1
+        revision: d13c9ce3119a3c0d0dee404bc8c7f6911b59a072
+        source:
+          path: metabase
+          repoURL: https://github.com/davehenrique/foxfire.git
+    reconciledAt: "2024-09-09T22:41:24Z"
+    resources:
+    - health:
+        status: Healthy
+      kind: Service
+      name: metabase
+      namespace: metabase-lab
+      status: Synced
+      version: v1
+    - group: apps
+      health:
+        message: 'Waiting for rollout to finish: 0 of 1 updated replicas are available...'
+        status: Progressing
+      kind: Deployment
+      name: metabase
+      namespace: metabase-lab
+      status: Synced
+      version: v1
+    sourceType: Directory
+    summary:
+      images:
+      - metabase/metabase:latest
+    sync:
+      comparedTo:
+        destination:
+          namespace: default
+          server: https://kubernetes.default.svc
+        source:
+          path: metabase
+          repoURL: https://github.com/davehenrique/foxfire.git
+      revision: d13c9ce3119a3c0d0dee404bc8c7f6911b59a072
+      status: Synced
+- apiVersion: argoproj.io/v1alpha1
+  kind: Application
+  metadata:
+    creationTimestamp: "2024-09-09T22:09:14Z"
+    generation: 31
+    name: nginx-app
+    namespace: argocd
+    resourceVersion: "15217"
+    uid: 7d85ccf3-9de2-496b-8884-42d482fee581
+  spec:
+    destination:
+      namespace: default
+      server: https://kubernetes.default.svc
+    project: default
+    source:
+      path: nginx
+      repoURL: https://github.com/davehenrique/foxfire.git
+  status:
+    controllerNamespace: argocd
+    health:
+      status: Healthy
+    history:
+    - deployStartedAt: "2024-09-09T22:14:37Z"
+      deployedAt: "2024-09-09T22:14:37Z"
+      id: 0
+      initiatedBy:
+        username: admin
+      revision: bf22f21d7731da0b2a49b7274ab356c1f0990113
+      source:
+        path: nginx
+        repoURL: https://github.com/davehenrique/foxfire.git
+    - deployStartedAt: "2024-09-09T22:16:07Z"
+      deployedAt: "2024-09-09T22:16:07Z"
+      id: 1
+      initiatedBy:
+        username: admin
+      revision: 15a742575090f2ce8b753d8ec6baed447b7a119d
+      source:
+        path: nginx
+        repoURL: https://github.com/davehenrique/foxfire.git
+    operationState:
+      finishedAt: "2024-09-09T22:16:07Z"
+      message: successfully synced (all tasks run)
+      operation:
+        initiatedBy:
+          username: admin
+        retry: {}
+        sync:
+          revision: 15a742575090f2ce8b753d8ec6baed447b7a119d
+          syncStrategy:
+            hook: {}
+      phase: Succeeded
+      startedAt: "2024-09-09T22:16:07Z"
+      syncResult:
+        resources:
+        - group: ""
+          hookPhase: Running
+          kind: Service
+          message: service/nginx-service unchanged
+          name: nginx-service
+          namespace: default
+          status: Synced
+          syncPhase: Sync
+          version: v1
+        - group: apps
+          hookPhase: Running
+          kind: Deployment
+          message: deployment.apps/nginx-deployment configured
+          name: nginx-deployment
+          namespace: default
+          status: Synced
+          syncPhase: Sync
+          version: v1
+        revision: 15a742575090f2ce8b753d8ec6baed447b7a119d
+        source:
+          path: nginx
+          repoURL: https://github.com/davehenrique/foxfire.git
+    reconciledAt: "2024-09-09T22:41:24Z"
+    resources:
+    - health:
+        status: Healthy
+      kind: Service
+      name: nginx-service
+      namespace: default
+      status: Synced
+      version: v1
+    - group: apps
+      health:
+        status: Healthy
+      kind: Deployment
+      name: nginx-deployment
+      namespace: default
+      status: Synced
+      version: v1
+    sourceType: Directory
+    summary:
+      images:
+      - nginx:latest
+    sync:
+      comparedTo:
+        destination:
+          namespace: default
+          server: https://kubernetes.default.svc
+        source:
+          path: nginx
+          repoURL: https://github.com/davehenrique/foxfire.git
+      revision: d13c9ce3119a3c0d0dee404bc8c7f6911b59a072
+      status: Synced
+kind: List
+metadata:
+  resourceVersion: ""
